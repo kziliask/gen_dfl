@@ -86,8 +86,8 @@ class ExpectedKnapsackModel(pyepo.model.grb.knapsackModel):
     def regret_loss_batch(self, xs, c_samples, c_trues, alpha=1):
         '''
         Compute the regret loss for a batch of solutions
-        c_samples: [batch_size, num_samples, num_items]
-        c_trues: [batch_size, num_samples, num_items]
+        c_samples: [batch_size=1, num_samples, num_items]
+        c_trues: [batch_size=1, num_samples, num_items]
         '''
         batch_size = xs.shape[0]
         loss = 0
@@ -124,8 +124,8 @@ class ExpectedKnapsackModel(pyepo.model.grb.knapsackModel):
     def obj_eval(self, xs, c_samples, c_trues, alpha=1):
         '''
         Compute the objective value for a batch of solutions
-        c_samples: [batch_size, num_samples, num_items]
-        c_trues: [batch_size, num_samples, num_items]
+        c_samples: [batch_size=1, num_samples, num_items]
+        c_trues: [batch_size=1, num_samples, num_items]
         '''
         batch_size = xs.shape[0]
         loss = 0
