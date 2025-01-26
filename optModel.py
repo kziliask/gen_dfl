@@ -695,7 +695,7 @@ class ExpectedUnderGroundingModel(pyepo.model.grb.knapsackModel):
            ( cost[i,:] * self.customer ) dot x
         over all scenarios i in c_samples.
 
-        c_samples: shape (num_samples, num_cities)
+        c_samples: shape (num_samples, num_items)
         """
         num_scen = c_samples.shape[0]
         # We'll build up a Gurobi expression
