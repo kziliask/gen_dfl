@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from pyepo import EPO
 from train import build_nsf, ConditionalFlow
 import json
-import os
+import osd
 from sklearn.model_selection import train_test_split
 from typing import Tuple, Optional, Union
 
