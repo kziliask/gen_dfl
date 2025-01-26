@@ -578,6 +578,298 @@ class AverageRegretModel(pyepo.model.grb.knapsackModel):
         )
         self._model.setObjective(obj)
 
+class AverageUnderGroundingModel(pyepo.model.grb.knapsackModel):
+    """
+    This class is a 'knapsack-like' optimization model for an undergrounding/hardening problem.
+    It handles scenario-based average objective.
+
+    Attributes:
+        _model (gurobipy.Model): Gurobi model
+        customer (np.ndarray or list): e.g. customer weighting per city
+        capacity (float or int): total capacity (max number of cities to be hardened)
+        items (int): number of items/cities
+    """
+
+    def __init__(self, customer, capacity):
+        """
+        Args:
+            customer (np.ndarray or list): city-level 'weights' or # of customers
+            capacity (float or int): total capacity (# of cities that can be chosen)
+        """
+        self.customer = np.array(customer, dtype=float)
+        self.capacity = capacity
+        self.items = len(self.customer)
+        # Inheriting from knapsackModel: pass the same shape 
+        # (the code expects 'weights' and 'capacity'). 
+        # We'll call it as if 'weights' is shape (1, items).
+        super().__init__(self.customer[np.newaxis, :], capacity)
+
+    def _getModel(self):
+        """
+        Build a Gurobi model: x[i] in [0,1], sum(x) <= capacity.
+        We set sense=MAXIMIZE. 
+        (Switch vtype=GRB.BINARY if you want a strict city selection.)
+        """
+        m = gp.Model("undergrounding")
+        m.Params.outputFlag = 0  # turn off Gurobi logging if desired
+
+        # x: how many fraction of city i we 'underground'? 
+        # If you want a pure binary selection, use vtype=GRB.BINARY:
+        x = m.addMVar(self.items, name="x", ub=1, vtype=GRB.CONTINUOUS)
+
+        m.modelSense = GRB.MAXIMIZE
+
+        # Constraint: sum(x) <= capacity
+        m.addConstr(x.sum() <= self.capacity)
+
+        return m, x
+
+    def setObj(self, c_samples):
+        """
+        Sets Gurobi objective to the average over scenarios in c_samples. 
+        Suppose c_samples has shape (num_scenarios, num_cities).
+
+        We'll do: 
+          objective = (1/num_scenarios) * sum_{s} [ (c_samples[s,:] * customer) dot x ].
+
+        The user can interpret c_samples[s,i] as some cost or benefit 
+        for city i in scenario s, multiplied by city i's 'customer' factor.
+        """
+        num_scen = c_samples.shape[0]
+        # Build Gurobi expression
+        obj_expr = 0.0
+
+        for s in range(num_scen):
+            # Convert to numpy if needed
+            cost_vec = np.array(c_samples[s]) * self.customer
+            # cost_vec @ x => sum_i cost_vec[i] * x[i]
+            obj_expr += (1.0 / num_scen) * (cost_vec @ self.x)
+
+        self._model.setObjective(obj_expr, GRB.MAXIMIZE)
+
+
+class ExpectedUnderGroundingModel(pyepo.model.grb.knapsackModel):
+    """
+    A 'knapsack-style' model for undergrounding (or city hardening).
+
+    Attributes:
+        _model (GurobiPy model): Gurobi model
+        customer (np.ndarray): For each city (item), e.g. # of customers or weighting
+        capacity (float or int): Max number of items/cities that can be chosen (like knapsack capacity)
+        items (int): number of items
+    """
+
+    def __init__(self, customer, capacity):
+        """
+        Args:
+            customer (np.ndarray or list): 'weight' or # of customers for each city.
+            capacity (float or int): total capacity (max chosen items).
+        """
+        self.customer = np.array(customer, dtype=float)
+        self.capacity = capacity
+        self.items = len(self.customer)   # or self.customer.shape[0]
+        super().__init__(self.customer, capacity)
+
+    def _getModel(self):
+        """
+        Build Gurobi model: continuous or binary knapsack with capacity on x.sum().
+        """
+        m = gp.Model("knapsack")
+        # Turn off Gurobi output if desired:
+        m.Params.outputFlag = 0
+
+        # x: let's assume continuous or binary. If truly knapsack, maybe vtype=GRB.BINARY
+        x = m.addMVar(self.items, name="x", ub=1, vtype=GRB.CONTINUOUS)
+
+        # We want to maximize
+        m.modelSense = GRB.MAXIMIZE
+
+        # Constraint: sum(x) <= capacity
+        m.addConstr(x.sum() <= self.capacity)
+
+        return m, x
+
+    def setObj(self, c_samples, alpha=1):
+        """
+        Sets the Gurobi objective to the average of
+           ( cost[i,:] * self.customer ) dot x
+        over all scenarios i in c_samples.
+
+        c_samples: shape (num_samples, num_cities)
+        """
+        num_scen = c_samples.shape[0]
+        # We'll build up a Gurobi expression
+        obj_expr = 0.0
+
+        for i in range(num_scen):
+            # Multiply each item cost by the city's 'customer' factor
+            # c_samples[i] is shape (num_items,)
+            # (c_samples[i] * self.customer) is also shape (num_items,)
+            cost_vec = np.array(c_samples[i]) * self.customer  # shape (items,)
+
+            # Then cost_vec @ self.x is that scenario's total cost
+            # We'll weight it by (1/num_scen)
+            obj_expr += (1.0 / num_scen) * (cost_vec @ self.x)
+
+        self._model.setObjective(obj_expr, GRB.MAXIMIZE)
+
+
+    def regret_loss_batch(self, xs, c_samples, c_trues, alpha=1):
+        """
+        c_samples, c_trues shape: [batch_size=1, num_scenarios, num_items].
+        We'll incorporate `self.customer` in the objective computations below.
+        """
+        batch_size = xs.shape[0]
+        loss = 0
+
+        # We'll build a torch version of self.customer for multiplication
+        cust_t = torch.from_numpy(self.customer).to(c_samples.device).float()
+
+        for c_sample, c_true in zip(c_samples, c_trues):
+            # c_sample, c_true each shape: (num_scenarios, num_items)
+
+            # 1) Solve with c_sample
+            self.setObj(c_sample.detach())  # Gurobi objective
+            sol, _ = self.solve()           # Solve
+            sol_tensor = torch.tensor(sol, dtype=c_sample.dtype, device=c_sample.device)
+
+            # Evaluate that solution under the 'true' costs:
+            # Each scenario row => c_true[s,:], and then multiply by customer
+            # So we do (c_true[s,:] * cust_t) dot sol_tensor
+            # We'll gather them all at once
+            # => shape (num_scenarios,)
+            objs = torch.matmul(c_true * cust_t, sol_tensor)
+            objs_sorted, _ = torch.sort(objs)
+            m = int(alpha * len(objs))
+            regret1 = torch.mean(objs_sorted[:m])
+
+            # 2) Solve with c_true (the real cost)
+            self.setObj(c_true.detach())
+            sol_true, _ = self.solve()
+            sol_true_tensor = torch.tensor(sol_true, dtype=c_sample.dtype, device=c_sample.device)
+
+            # Evaluate that 'true' solution under c_true again
+            objs_true = torch.matmul(c_true * cust_t, sol_true_tensor)
+            objs_true_sorted, _ = torch.sort(objs_true)
+            m = int(alpha * len(objs_true))
+            regret2 = torch.mean(objs_true_sorted[:m])
+
+            # Accumulate absolute difference
+            loss += torch.abs(regret1 - regret2)
+
+        return loss / batch_size
+
+    def obj_eval(self, xs, c_samples, c_trues, alpha=1):
+        """
+        Evaluate the objective (e.g. CVaR alpha) for solutions obtained from c_samples,
+        measured under c_trues. Also incorporate self.customer in the objectives.
+        """
+        batch_size = xs.shape[0]
+        loss = 0
+
+        cust_t = torch.from_numpy(self.customer).to(c_samples.device).float()
+
+        for c_sample, c_true in zip(c_samples, c_trues):
+            # Solve the model with c_sample
+            self.setObj(c_sample.detach())
+            sol, _ = self.solve()
+            sol_tensor = torch.tensor(sol, dtype=c_sample.dtype, device=c_sample.device)
+
+            # Evaluate under c_true
+            objs = torch.matmul(c_true * cust_t, sol_tensor)
+            objs_sorted, _ = torch.sort(objs)
+            m = int(alpha * len(objs))
+            loss += torch.mean(objs_sorted[:m])
+
+        return loss / c_samples.shape[0]
+
+# class ExpectedPowerHardening(optGrbModel):
+#     """
+#     This class is an optimization model for energy scheduling.
+
+#     Attributes:
+#         _model (model): a Pyomo model
+#         plo_t (np.ndarray / list): lower bound of the demand
+#         psch_t (np.ndarray / list): scheduled  demand
+#         pup_t (np.ndarray / list): upper bound of the demand
+#     """
+
+#     def __init__(self, city_count, max_selected_cities, customers):
+#         """
+#         Args:
+#             plo_t (np.ndarray / list): lower bound of the demand
+#             psch_t (np.ndarray / list): scheduled  demand
+#             pup_t (np.ndarray / list): upper bound of the demand
+#         """
+#         self.city_count = city_count
+#         self.max_selected_cities = max_selected_cities
+#         self.customers = np.array(customers, dtype=float)
+#         super().__init__()
+
+#     def _getModel(self):
+#         # create a model
+#         m = gp.Model("PowerHardening")
+#         # variables
+#         x = m.addMVar(self.city_count, vtype=GRB.BINARY, name="x")
+#         # constr
+#         m.addConstr(gp.quicksum(x) == gp.quicksum(self.psch_t))
+#         return m, x
+    
+#     def setObj(self, outage_samples):
+#         '''
+#         min_x E_c[f(x, c)]
+#         '''
+#         num_scenarios = outage_samples.shape[0]
+
+#         # Convert customers -> torch.Tensor for consistent ops
+#         customers_t = torch.from_numpy(self.customers)
+
+#         # Compute SAIDI for each scenario: shape => (num_scenarios, city_count)
+#         # If outage_samples has a time dimension T, sum over T => shape (num_scenarios, city_count).
+#         if outage_samples.dim() == 3:
+#             # sum over time dim => shape (num_scenarios, city_count)
+#             outage_sums = outage_samples.sum(dim=2)
+#         else:
+#             # assume we already have shape (num_scenarios, city_count)
+#             outage_sums = outage_samples
+#         # SAIDI_s[s,i] = outage_sums[s,i] / customers[i]
+#         SAIDI_s = outage_sums / customers_t.unsqueeze(0)  # shape (num_scenarios, city_count)
+
+#         # Move to numpy for Gurobi
+#         SAIDI_s_np = SAIDI_s.detach().cpu().numpy()
+
+#         # Build the average objective: (1/num_scenarios)* sum_s sum_i( SAIDI_s_np[s,i]* x[i] )
+#         obj = gp.quicksum(
+#             (1.0 / num_scenarios) * SAIDI_s_np[s, i] * self.x[i]
+#             for s in range(num_scenarios)
+#             for i in range(self.city_count)
+#         )
+#         self._model.setObjective(obj, GRB.MAXIMIZE)
+
+        
+#     def obj_eval(self, xs, c_samples, c_trues, alpha=1):
+#         '''
+#         Compute the objective value for a batch of solutions
+#         c_samples: [batch_size, num_samples, num_items]
+#         c_trues: [batch_size, num_samples, num_items]
+#         '''
+        
+#         loss = 0
+#         for c_sample, c_true in zip(c_samples, c_trues):
+#             self.setObj(c_sample.detach())
+#             sol, _ = self.solve()
+#             # Convert sol to tensor if it's not already
+#             sol_tensor = torch.tensor(sol, dtype=c_sample.dtype, device=c_sample.device)
+#             # Compute all objectives at once: [n, d] @ [d] -> [n]
+#             objs = torch.matmul(c_true, sol_tensor)
+#             # Sort the objectives
+#             objs_sorted, _ = torch.sort(objs)
+#             # Take the worst alpha fraction
+#             m = int(alpha * len(objs))
+#             loss += torch.mean(objs_sorted[-m:])
+            
+#         return loss / c_samples.shape[0]
+        
 if __name__ == "__main__":
 
     model = pyepo.model.grb.ShortesPathModel()
