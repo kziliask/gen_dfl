@@ -259,7 +259,7 @@ class ExpectedPortfolioModel(pyepo.model.grb.portfolioModel):
         Args:
             num_assets (int): number of assets
             covariance (numpy.ndarray): covariance matrix of the returns
-            gamma (float): risk level parameter
+            gamma (float): if to include the quadratic loss for MIP approx.
         """
         self.num_assets = num_assets
         self.covariance = covariance
@@ -376,6 +376,7 @@ class ExpectedPortfolioModel(pyepo.model.grb.portfolioModel):
 class ExpectedSyntheticNonlinearModel(optGrbModel):
     """
     This class is an optimization model for synthetic nonlinear problem
+    Use quadratic loss for approx.
     """
     def __init__(self, num_items):
         self.num_items = num_items
