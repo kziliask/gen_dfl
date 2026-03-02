@@ -1,4 +1,4 @@
-# gen_dfl_icml
+# gen_dfl
 
 This repository contains the official implementation of:
 
