@@ -35,6 +35,20 @@ scripts/run_portfolio_cnf.sh
 scripts/run_portfolio_gmm.sh
 ```
 
+For multi-seed runs, prefer the config runner:
+
+```bash
+/Users/zilikons/conda/envs/gendfl/bin/python scripts/run_portfolio_config.py \
+  configs/portfolio/cnf_main.yaml
+```
+
+Preview the exact commands without running them:
+
+```bash
+/Users/zilikons/conda/envs/gendfl/bin/python scripts/run_portfolio_config.py \
+  configs/portfolio/cnf_main.yaml --dry-run
+```
+
 Implementation details, deviations, environment notes, and claim tracking live under `docs/`.
 
 ## Citation

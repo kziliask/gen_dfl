@@ -85,3 +85,73 @@ def test_aggregate_results_normalizes_legacy_metrics(tmp_path):
     assert rows[0]["metric_cvar_regret"] == "0.34"
     assert rows[0]["metric_nll"] == "4.5"
 
+
+def test_portfolio_config_runner_dry_run_uses_extended_seed_matrix():
+    result = subprocess.run(
+        [
+            sys.executable,
+            "scripts/run_portfolio_config.py",
+            "configs/portfolio/cnf_reproduction.yaml",
+            "--seeds",
+            "42,43,44,45,46",
+            "--dry-run",
+        ],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    commands = [line for line in result.stdout.splitlines() if "end2end_cflowdfl_portfolio_alpha.py" in line]
+    assert len(commands) == 5
+    assert "--seed 42" in commands[0]
+    assert "--seed 46" in commands[-1]
+
+
+def test_portfolio_config_runner_expands_mixture_component_sweep():
+    result = subprocess.run(
+        [
+            sys.executable,
+            "scripts/run_portfolio_config.py",
+            "configs/portfolio/gmm_k_sweep.yaml",
+            "--dry-run",
+        ],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    commands = [line for line in result.stdout.splitlines() if "end2end_cflowdfl_portfolio_alpha.py" in line]
+    assert len(commands) == 25
+    assert "--mixture_components 1" in commands[0]
+    assert "--mixture_components 10" in commands[-1]
+
+
+def test_portfolio_config_runner_rejects_unsupported_list_fields(tmp_path):
+    config = tmp_path / "bad.yaml"
+    config.write_text(
+        "\n".join(
+            [
+                "extends: configs/portfolio/cnf_reproduction.yaml",
+                "rank: [1, 2]",
+            ]
+        )
+    )
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "scripts/run_portfolio_config.py",
+            str(config),
+            "--dry-run",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 2
+    assert "Config error:" in result.stderr
+    assert "rank" in result.stderr
+    assert "scalar-only" in result.stderr

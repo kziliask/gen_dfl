@@ -102,3 +102,529 @@ run_id,timestamp,git_commit,task,model,generator,seed,alpha,beta,num_generated_s
 ?? scripts/
 ?? src/
 ?? tests/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --mixture_components 1 --seed 42 --betas 100 --n 20 --m 5 --num_epochs 1 --batch_size 8 --num_generated_samples 10 --contextual_pretrain_epochs 1 --p_theta_pretrain_epochs 1 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0
+20260506T201850Z_3ba02494,2026-05-06T20:18:50.666335+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,cnf,42,1.0,100,200,,,0.001,32,1,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",5.750383500009775,,,,,,,,,,,,,,,,,,cnf,30,50,success,,results/raw/20260506T201850Z_3ba02494.json,logs/portfolio/20260506T201850Z_3ba02494.stdout.log,logs/portfolio/20260506T201850Z_3ba02494.stderr.log,0,5.750383500009775,"?? src/__pycache__/
+?? src/evaluation/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator cnf --seed 42 --betas 100 --n 20 --m 5 --num_epochs 1 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0
+20260506T202401Z_79d43d84,2026-05-06T20:24:01.016557+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,42,1.0,100,200,1,diagonal,0.001,32,1,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",5.083113624947146,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T202401Z_79d43d84.json,logs/portfolio/20260506T202401Z_79d43d84.stdout.log,logs/portfolio/20260506T202401Z_79d43d84.stderr.log,0,5.083113624947146,"M __pycache__/optModel.cpython-312.pyc
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+?? __pycache__/optDataset.cpython-312.pyc
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --mixture_components 1 --seed 42 --betas 100 --n 20 --m 5 --num_epochs 1 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0
+20260506T204404Z_723c34ee,2026-05-06T20:44:04.928937+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,42,1.0,100,200,"[1, 2, 3, 5, 10]",diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",1.339175916975364,,,,,,,,,,,,,,,,,,gmm,30,50,failed,,results/raw/20260506T204404Z_723c34ee.json,logs/portfolio/20260506T204404Z_723c34ee.stdout.log,logs/portfolio/20260506T204404Z_723c34ee.stderr.log,2,1.339175916975364,"M README.md
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/","/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 42 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components '[1, 2, 3, 5, 10]'"
+20260506T204749Z_942ce4c2,2026-05-06T20:47:49.188443+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,42,1.0,100,200,1,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",70.7428302501794,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T204749Z_942ce4c2.json,logs/portfolio/20260506T204749Z_942ce4c2.stdout.log,logs/portfolio/20260506T204749Z_942ce4c2.stderr.log,0,70.7428302501794,"M README.md
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? configs/portfolio/gmm_k_sweep.yaml
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 42 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 1
+20260506T204900Z_4c3355a3,2026-05-06T20:49:00.659038+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,43,1.0,100,200,1,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",72.96204566699453,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T204900Z_4c3355a3.json,logs/portfolio/20260506T204900Z_4c3355a3.stdout.log,logs/portfolio/20260506T204900Z_4c3355a3.stderr.log,0,72.96204566699453,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 43 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 1
+20260506T205014Z_582bc954,2026-05-06T20:50:14.479057+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,44,1.0,100,200,1,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",71.31957145803608,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T205014Z_582bc954.json,logs/portfolio/20260506T205014Z_582bc954.stdout.log,logs/portfolio/20260506T205014Z_582bc954.stderr.log,0,71.31957145803608,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 44 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 1
+20260506T205126Z_239f5b69,2026-05-06T20:51:26.617516+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,45,1.0,100,200,1,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",67.33740329113789,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T205126Z_239f5b69.json,logs/portfolio/20260506T205126Z_239f5b69.stdout.log,logs/portfolio/20260506T205126Z_239f5b69.stderr.log,0,67.33740329113789,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 45 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 1
+20260506T205234Z_f9ea897b,2026-05-06T20:52:34.750939+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,46,1.0,100,200,1,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",68.98535320791416,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T205234Z_f9ea897b.json,logs/portfolio/20260506T205234Z_f9ea897b.stdout.log,logs/portfolio/20260506T205234Z_f9ea897b.stderr.log,0,68.98535320791416,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 46 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 1
+20260506T205344Z_2c697378,2026-05-06T20:53:44.437367+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,42,1.0,100,200,2,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",68.30623308289796,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T205344Z_2c697378.json,logs/portfolio/20260506T205344Z_2c697378.stdout.log,logs/portfolio/20260506T205344Z_2c697378.stderr.log,0,68.30623308289796,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 42 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 2
+20260506T205453Z_ea4c80bd,2026-05-06T20:54:53.602657+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,43,1.0,100,200,2,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",67.84775933297351,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T205453Z_ea4c80bd.json,logs/portfolio/20260506T205453Z_ea4c80bd.stdout.log,logs/portfolio/20260506T205453Z_ea4c80bd.stderr.log,0,67.84775933297351,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 43 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 2
+20260506T205602Z_56d75f12,2026-05-06T20:56:02.142888+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,44,1.0,100,200,2,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",67.57936208392493,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T205602Z_56d75f12.json,logs/portfolio/20260506T205602Z_56d75f12.stdout.log,logs/portfolio/20260506T205602Z_56d75f12.stderr.log,0,67.57936208392493,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 44 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 2
+20260506T205710Z_023c3d96,2026-05-06T20:57:10.390040+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,45,1.0,100,200,2,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",67.27164187515154,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T205710Z_023c3d96.json,logs/portfolio/20260506T205710Z_023c3d96.stdout.log,logs/portfolio/20260506T205710Z_023c3d96.stderr.log,0,67.27164187515154,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 45 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 2
+20260506T205818Z_f9aa0bbe,2026-05-06T20:58:18.327538+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,46,1.0,100,200,2,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",67.2679464998655,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T205818Z_f9aa0bbe.json,logs/portfolio/20260506T205818Z_f9aa0bbe.stdout.log,logs/portfolio/20260506T205818Z_f9aa0bbe.stderr.log,0,67.2679464998655,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 46 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 2
+20260506T205926Z_126175c7,2026-05-06T20:59:26.248821+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,42,1.0,100,200,3,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",67.24814129201695,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T205926Z_126175c7.json,logs/portfolio/20260506T205926Z_126175c7.stdout.log,logs/portfolio/20260506T205926Z_126175c7.stderr.log,0,67.24814129201695,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 42 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 3
+20260506T210034Z_cf954ed2,2026-05-06T21:00:34.143548+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,43,1.0,100,200,3,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",67.56970095797442,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T210034Z_cf954ed2.json,logs/portfolio/20260506T210034Z_cf954ed2.stdout.log,logs/portfolio/20260506T210034Z_cf954ed2.stderr.log,0,67.56970095797442,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 43 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 3
+20260506T210142Z_dfea5783,2026-05-06T21:01:42.365094+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,44,1.0,100,200,3,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",68.07811312517151,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T210142Z_dfea5783.json,logs/portfolio/20260506T210142Z_dfea5783.stdout.log,logs/portfolio/20260506T210142Z_dfea5783.stderr.log,0,68.07811312517151,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 44 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 3
+20260506T210251Z_b0cf858b,2026-05-06T21:02:51.103369+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,45,1.0,100,200,3,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",68.84195883315988,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T210251Z_b0cf858b.json,logs/portfolio/20260506T210251Z_b0cf858b.stdout.log,logs/portfolio/20260506T210251Z_b0cf858b.stderr.log,0,68.84195883315988,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 45 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 3
+20260506T210400Z_12a2def4,2026-05-06T21:04:00.622639+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,46,1.0,100,200,3,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",68.23563070804812,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T210400Z_12a2def4.json,logs/portfolio/20260506T210400Z_12a2def4.stdout.log,logs/portfolio/20260506T210400Z_12a2def4.stderr.log,0,68.23563070804812,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 46 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 3
+20260506T210509Z_f375bccc,2026-05-06T21:05:09.546623+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,42,1.0,100,200,5,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",68.53888637502678,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T210509Z_f375bccc.json,logs/portfolio/20260506T210509Z_f375bccc.stdout.log,logs/portfolio/20260506T210509Z_f375bccc.stderr.log,0,68.53888637502678,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 42 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 5
+20260506T210618Z_32970e51,2026-05-06T21:06:18.863592+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,43,1.0,100,200,5,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",68.53442129213363,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T210618Z_32970e51.json,logs/portfolio/20260506T210618Z_32970e51.stdout.log,logs/portfolio/20260506T210618Z_32970e51.stderr.log,0,68.53442129213363,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 43 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 5
+20260506T210728Z_ef8bcb1f,2026-05-06T21:07:28.072799+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,44,1.0,100,200,5,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",68.11807712493464,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T210728Z_ef8bcb1f.json,logs/portfolio/20260506T210728Z_ef8bcb1f.stdout.log,logs/portfolio/20260506T210728Z_ef8bcb1f.stderr.log,0,68.11807712493464,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 44 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 5
+20260506T210836Z_e9a67851,2026-05-06T21:08:36.842453+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,45,1.0,100,200,5,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",68.29714216711,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T210836Z_e9a67851.json,logs/portfolio/20260506T210836Z_e9a67851.stdout.log,logs/portfolio/20260506T210836Z_e9a67851.stderr.log,0,68.29714216711,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 45 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 5
+20260506T210945Z_fe69bdd0,2026-05-06T21:09:45.788956+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,46,1.0,100,200,5,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",69.280734666856,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T210945Z_fe69bdd0.json,logs/portfolio/20260506T210945Z_fe69bdd0.stdout.log,logs/portfolio/20260506T210945Z_fe69bdd0.stderr.log,0,69.280734666856,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 46 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 5
+20260506T211055Z_6fd793d5,2026-05-06T21:10:55.711840+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,42,1.0,100,200,10,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",69.300173250027,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T211055Z_6fd793d5.json,logs/portfolio/20260506T211055Z_6fd793d5.stdout.log,logs/portfolio/20260506T211055Z_6fd793d5.stderr.log,0,69.300173250027,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 42 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 10
+20260506T211205Z_9e0e6aca,2026-05-06T21:12:05.731997+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,43,1.0,100,200,10,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",69.5731430829037,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T211205Z_9e0e6aca.json,logs/portfolio/20260506T211205Z_9e0e6aca.stdout.log,logs/portfolio/20260506T211205Z_9e0e6aca.stderr.log,0,69.5731430829037,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 43 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 10
+20260506T211316Z_d6951e28,2026-05-06T21:13:16.096195+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,44,1.0,100,200,10,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",68.3611476670485,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T211316Z_d6951e28.json,logs/portfolio/20260506T211316Z_d6951e28.stdout.log,logs/portfolio/20260506T211316Z_d6951e28.stderr.log,0,68.3611476670485,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 44 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 10
+20260506T211425Z_d2c982cd,2026-05-06T21:14:25.153802+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,45,1.0,100,200,10,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",67.30516454111785,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T211425Z_d2c982cd.json,logs/portfolio/20260506T211425Z_d2c982cd.stdout.log,logs/portfolio/20260506T211425Z_d2c982cd.stderr.log,0,67.30516454111785,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 45 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 10
+20260506T211533Z_3882cdf2,2026-05-06T21:15:33.155716+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,gmm,46,1.0,100,200,10,diagonal,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",67.43201170791872,,,,,,,,,,,,,,,,,,gmm,30,50,success,,results/raw/20260506T211533Z_3882cdf2.json,logs/portfolio/20260506T211533Z_3882cdf2.stdout.log,logs/portfolio/20260506T211533Z_3882cdf2.stderr.log,0,67.43201170791872,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator gmm --seed 46 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0 --mixture_components 10
+20260506T211942Z_95fc54fb,2026-05-06T21:19:42.861980+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,cnf,42,1.0,100,200,,,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",74.40785470814444,,,,,,,,,,,,,,,,,,cnf,30,50,success,,results/raw/20260506T211942Z_95fc54fb.json,logs/portfolio/20260506T211942Z_95fc54fb.stdout.log,logs/portfolio/20260506T211942Z_95fc54fb.stderr.log,0,74.40785470814444,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator cnf --seed 42 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0
+20260506T212057Z_ceb640fa,2026-05-06T21:20:57.933989+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,cnf,43,1.0,100,200,,,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",74.24563295789994,,,,,,,,,,,,,,,,,,cnf,30,50,success,,results/raw/20260506T212057Z_ceb640fa.json,logs/portfolio/20260506T212057Z_ceb640fa.stdout.log,logs/portfolio/20260506T212057Z_ceb640fa.stderr.log,0,74.24563295789994,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator cnf --seed 43 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0
+20260506T212212Z_335c2976,2026-05-06T21:22:12.839820+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,cnf,44,1.0,100,200,,,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",73.98450845805928,,,,,,,,,,,,,,,,,,cnf,30,50,success,,results/raw/20260506T212212Z_335c2976.json,logs/portfolio/20260506T212212Z_335c2976.stdout.log,logs/portfolio/20260506T212212Z_335c2976.stderr.log,0,73.98450845805928,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator cnf --seed 44 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0
+20260506T212327Z_02c5ad97,2026-05-06T21:23:27.482726+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,cnf,45,1.0,100,200,,,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",73.56887983297929,,,,,,,,,,,,,,,,,,cnf,30,50,success,,results/raw/20260506T212327Z_02c5ad97.json,logs/portfolio/20260506T212327Z_02c5ad97.stdout.log,logs/portfolio/20260506T212327Z_02c5ad97.stderr.log,0,73.56887983297929,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator cnf --seed 45 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0
+20260506T212441Z_f5b914cb,2026-05-06T21:24:41.724443+00:00,ba190c164955220c487ed4f895f6d8d6ccc9d4d8,portfolio,gen-dfl,cnf,46,1.0,100,200,,,0.001,32,10,gurobi,11.0.2,"{""cuda_available"": false, ""cuda_device_count"": 0, ""cuda_device_name"": """", ""machine"": ""arm64"", ""mps_available"": true, ""platform"": ""macOS-26.3.1-arm64-arm-64bit"", ""processor"": ""arm"", ""python"": ""3.12.3"", ""torch"": ""2.3.1""}",73.25843875017017,,,,,,,,,,,,,,,,,,cnf,30,50,success,,results/raw/20260506T212441Z_f5b914cb.json,logs/portfolio/20260506T212441Z_f5b914cb.stdout.log,logs/portfolio/20260506T212441Z_f5b914cb.stderr.log,0,73.25843875017017,"M README.md
+ M __pycache__/optModel.cpython-312.pyc
+ M configs/portfolio/cnf_main.yaml
+ M pred_dfl_portfolio.py
+ M results/processed/aggregated_results.csv
+ M results/raw/portfolio_generator_comparison.jsonl
+ M results/raw/run_registry.csv
+ M tests/test_reproducibility_scripts.py
+?? __pycache__/optDataset.cpython-312.pyc
+?? configs/portfolio/gmm_k_sweep.yaml
+?? func/__pycache__/__init__.cpython-312.pyc
+?? func/__pycache__/contrastive.cpython-312.pyc
+?? scripts/run_portfolio_config.py
+?? src/__pycache__/
+?? src/evaluation/__pycache__/
+?? src/generators/__pycache__/
+?? src/training/__pycache__/",/Users/zilikons/conda/envs/gendfl/bin/python end2end_cflowdfl_portfolio_alpha.py --generator cnf --seed 46 --betas 100 --n 200 --m 50 --num_epochs 10 --batch_size 32 --num_generated_samples 200 --contextual_pretrain_epochs 30 --p_theta_pretrain_epochs 50 --learning_rate 0.001 --noise_width 20 --deg 5 --num_experiments 1 --alpha 1.0

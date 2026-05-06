@@ -8,6 +8,7 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 from pyepo import EPO
 from src.generators.cnf import ConditionalFlow
+from src.training.generator_losses import set_global_seed
 import json
 import os
 from sklearn.model_selection import train_test_split
@@ -37,11 +38,11 @@ class NN(nn.Module):
         out = self.linear2(x)
         return out
 
-def generate_data(m, n, p, deg, dim, noise_width, caps, rank=None):
+def generate_data(m, n, p, deg, dim, noise_width, caps, rank=None, seed=42):
     # covariance, x, c = pyepo.data.portfolio.genData(num_data=n, num_features=p, num_assets=m,
     #                                                               deg=deg, noise_level=noise_width, seed=42)
     covariance, x, c = portfolio_genData(num_data=n, num_features=p, num_assets=m,
-                                                                  deg=deg, noise_level=noise_width, rank=rank, seed=42)
+                                                                  deg=deg, noise_level=noise_width, rank=rank, seed=seed)
     # mb_size = 50
     # fake_zs = torch.randn((mb_size, m))
     # fake_xs = torch.randn((mb_size, p))
@@ -86,8 +87,8 @@ def generate_data(m, n, p, deg, dim, noise_width, caps, rank=None):
     
     return covariance, x, c, contextual
 
-def create_datasets(x, c, batch_size, covariance, contextual):
-    x_train, x_test, c_train, c_test = train_test_split(x, c, test_size=int(x.shape[0]*0.2), random_state=246)
+def create_datasets(x, c, batch_size, covariance, contextual, seed=246):
+    x_train, x_test, c_train, c_test = train_test_split(x, c, test_size=int(x.shape[0]*0.2), random_state=seed)
     
     optmodel = ExpectedPortfolioModel(c_test.shape[1], covariance)
     dataset_train = optDataset(optmodel, x_train, c_train, contextual)
@@ -167,9 +168,10 @@ def evaluate_model(predmodel, contextual, optmodel, loader_test, batch_size, dev
     print(f"Average MSE: {np.mean(mse_losses)}")
     return np.mean(average_objectives), np.mean(average_regrets), np.mean(mse_losses)
 
-def run_experiment(m, n, p, deg, dim, noise_width, caps, batch_size, num_epochs, device, loss_func, rank=None):
-    covariance, x, c, contextual = generate_data(m, n, p, deg, dim, noise_width, caps, rank=rank)
-    loader_train, loader_test, optmodel = create_datasets(x, c, batch_size, covariance, contextual)
+def run_experiment(m, n, p, deg, dim, noise_width, caps, batch_size, num_epochs, device, loss_func, rank=None, seed=42):
+    set_global_seed(seed)
+    covariance, x, c, contextual = generate_data(m, n, p, deg, dim, noise_width, caps, rank=rank, seed=seed)
+    loader_train, loader_test, optmodel = create_datasets(x, c, batch_size, covariance, contextual, seed=seed)
     
     predmodel = NN(p, m).to(device)
     
@@ -210,6 +212,7 @@ def main():
     parser.add_argument("--rank", type=int, default=None)
     parser.add_argument("--deg", nargs="+", type=int, default=[6])
     parser.add_argument("--num_experiments", type=int, default=10)
+    parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
     # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     device = "cpu"
@@ -229,10 +232,11 @@ def main():
             for m in m_values:
                 caps = [20] * dim
                 for exp_idx in range(num_experiments):
-                    print(f"Running experiment for m={m}, noise_width={noise_width}, deg={deg}, experiment {exp_idx+1}/{num_experiments}")
+                    run_seed = args.seed + exp_idx
+                    print(f"Running experiment for m={m}, noise_width={noise_width}, deg={deg}, seed={run_seed}, experiment {exp_idx+1}/{num_experiments}")
                         
                     model, avg_objective, avg_regret, avg_mse, dfl_losses = run_experiment(
-                        m, n, p, deg, dim, noise_width, caps, batch_size, num_epochs, device, args.loss_func, rank=args.rank
+                        m, n, p, deg, dim, noise_width, caps, batch_size, num_epochs, device, args.loss_func, rank=args.rank, seed=run_seed
                     )
                         
                     result = {
@@ -246,6 +250,7 @@ def main():
                         "batch_size": batch_size,
                         "num_epochs": num_epochs,
                         "experiment_index": exp_idx,
+                        "seed": run_seed,
                         "average_objective": float(avg_objective),
                         "average_regret": float(avg_regret),
                         "average_mse": float(avg_mse),

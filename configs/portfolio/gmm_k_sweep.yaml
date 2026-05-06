@@ -1,0 +1,6 @@
+extends: configs/portfolio/cnf_reproduction.yaml
+seeds: [42, 43, 44, 45, 46]
+generator: "gmm"
+mixture_components: [1, 2, 3, 5, 10]
+covariance_type: diagonal
+
