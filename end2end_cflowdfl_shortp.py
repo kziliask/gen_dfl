@@ -7,7 +7,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 from pyepo import EPO
-from train import build_nsf, ConditionalFlow
+from src.generators.cnf import ConditionalFlow
 import json
 import os
 from sklearn.model_selection import train_test_split
@@ -22,8 +22,6 @@ from func.contrastive import NCE, contrastiveMAP
 
 # include argparse
 import argparse
-
-import sbibm
 
 class Contextual_wrapper():
     def __init__(self, task):
@@ -198,6 +196,7 @@ def generate_data(n, p, deg, e, grid):
     plt.ylabel('Loss')
     plt.title('Contextual Loss Curve')
     plt.legend()
+    os.makedirs("eval/shortp", exist_ok=True)
     plt.savefig('eval/shortp/contextual_loss_curve_shortp_cflow.png')
     plt.close()
     

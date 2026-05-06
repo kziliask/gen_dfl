@@ -1,0 +1,5 @@
+extends: configs/portfolio/cnf_reproduction.yaml
+generator: gmm
+mixture_components: 1
+covariance_type: diagonal
+

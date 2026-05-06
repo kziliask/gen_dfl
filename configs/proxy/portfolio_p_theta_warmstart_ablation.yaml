@@ -1,0 +1,6 @@
+task: portfolio
+p_theta_architecture: cnf
+q_architecture: cnf
+p_theta_pretrain_epochs: [0, 10, 50, 100]
+seeds: [42, 43, 44]
+

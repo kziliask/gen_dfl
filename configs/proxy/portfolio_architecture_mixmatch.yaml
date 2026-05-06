@@ -1,0 +1,8 @@
+task: portfolio
+seeds: [42, 43, 44]
+cells:
+  - {p_theta_architecture: cnf, q_architecture: cnf}
+  - {p_theta_architecture: gmm_k5, q_architecture: gmm_k5}
+  - {p_theta_architecture: gmm_k5, q_architecture: cnf}
+  - {p_theta_architecture: cnf, q_architecture: gmm_k5}
+

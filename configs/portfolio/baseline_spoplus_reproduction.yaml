@@ -1,0 +1,11 @@
+task: portfolio
+model: spo+
+generator: predictive
+seeds: [42, 43, 44]
+n: 200
+m: 50
+deg: 5
+noise_width: 20
+batch_size: 32
+num_epochs: 20
+

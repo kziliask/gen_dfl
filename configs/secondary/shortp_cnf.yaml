@@ -1,0 +1,9 @@
+task: shortest_path
+generator: cnf
+seeds: [42, 43, 44]
+n: 20
+deg: 5
+beta: 100
+alpha: 1.0
+num_epochs: 1
+

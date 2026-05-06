@@ -1,0 +1,7 @@
+task: portfolio
+generator: gmm
+mixture_components: 5
+proxy_shift_norms: [0.0, 0.25, 0.5, 1.0, 2.0]
+seeds: [42, 43, 44]
+metric: exact_gaussian_w2
+

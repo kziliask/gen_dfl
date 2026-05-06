@@ -10,8 +10,6 @@ from pyepo.model.opt import optModel
 import random
 from scipy.spatial import distance
 
-from train import build_nsf
-
 class optDataset(Dataset):
     """
     This class is Torch Dataset for optimization problems.
@@ -291,6 +289,7 @@ def twomoon_data_with_sampler(num_data, num_features, num_items, noise_std=0.1, 
 if __name__ == "__main__":
     from sklearn.model_selection import train_test_split
     from optModel import ExpectedKnapsackModel
+    from train import build_nsf
     weights, x, c, contextual = twomoon_data_with_sampler(100, 2, 2)
     x_train, x_test, c_train, c_test = train_test_split(x, c, test_size=0.2, random_state=42)
     optmodel = ExpectedKnapsackModel(weights, 10)

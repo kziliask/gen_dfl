@@ -7,7 +7,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 from pyepo import EPO
-from train import ConditionalFlow
+from src.generators.cnf import ConditionalFlow
 import json
 import os
 from sklearn.model_selection import train_test_split
@@ -22,9 +22,6 @@ from func.contrastive import NCE, contrastiveMAP
 
 # include argparse
 import argparse
-
-import sbibm
-
 
 def generate_data(m, n, p, deg, dim, noise_width, caps, rank=None):
     weights, x, c = pyepo.data.knapsack.genData(n, p, m, deg=deg, dim=dim, noise_width=noise_width)
@@ -57,6 +54,7 @@ def generate_data(m, n, p, deg, dim, noise_width, caps, rank=None):
     plt.ylabel('Loss')
     plt.title('Contextual Loss Curve')
     plt.legend()
+    os.makedirs("eval/knapsack", exist_ok=True)
     plt.savefig('eval/knapsack/contextual_loss_curve.png')
     plt.close()
     

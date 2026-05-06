@@ -2,4 +2,8 @@
 synthetic_power_data/
 results_undergrounding/
 Miniforge3.sh
+logs/
+paper/
 docs/
+eval/
+figures/

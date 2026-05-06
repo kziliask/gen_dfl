@@ -7,7 +7,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 from pyepo import EPO
-from train import build_nsf, ConditionalFlow
+from src.generators.cnf import ConditionalFlow
 import json
 import os
 from sklearn.model_selection import train_test_split
@@ -23,9 +23,6 @@ from func.spo import SPOPlus
 from func.rank import listwiseLTR, pairwiseLTR, pointwiseLTR
 # include argparse
 import argparse
-
-import sbibm
-
 
 # Prediction DFL
 class NN(nn.Module):
@@ -76,6 +73,7 @@ def generate_data(m, n, p, deg, dim, noise_width, caps, rank=None):
     plt.ylabel('Loss')
     plt.title('Contextual Loss Curve')
     plt.legend()
+    os.makedirs("eval/knapsack", exist_ok=True)
     plt.savefig('eval/knapsack/contextual_loss_curve.png')
     plt.close()
     

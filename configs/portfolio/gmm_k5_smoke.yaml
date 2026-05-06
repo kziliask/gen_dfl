@@ -1,0 +1,14 @@
+task: portfolio
+model: gen-dfl
+generator: gmm
+mixture_components: 5
+seed: 42
+n: 20
+m: 5
+deg: 5
+noise_width: 20
+beta: 100
+alpha: 1.0
+num_generated_samples: 200
+num_epochs: 1
+

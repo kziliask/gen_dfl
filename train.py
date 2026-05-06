@@ -14,41 +14,53 @@ python canvi_sbibm.py --task bernoulli_glm_raw --cuda_idx 7
 
 import pandas as pd
 import numpy as np
-import sbibm
 import torch
 import math
 import torch.distributions as D
 import matplotlib.pyplot as plt
 
-from pyknos.nflows import flows, transforms
 from functools import partial
 from typing import Optional
 from warnings import warn
-
-from pyknos.nflows import distributions as distributions_
-from pyknos.nflows import flows, transforms
-from pyknos.nflows.nn import nets
-from pyknos.nflows.transforms.splines import rational_quadratic
 from torch import Tensor, nn, relu, tanh, tensor, uint8
 
-import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+
+try:
+    import seaborn as sns
+except ImportError:
+    sns = None
 
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['mathtext.fontset'] = 'stix'
 mpl.rcParams['font.family'] = 'STIXGeneral'
 mpl.rcParams['text.latex.preamble'] = r'\usepackage{amsfonts}'
 
-sns.set_theme()
+if sns is not None:
+    sns.set_theme()
 
-from sbi.utils.sbiutils import (
-    standardizing_net,
-    standardizing_transform,
-    z_score_parser,
-)
-from sbi.utils.torchutils import create_alternating_binary_mask
-from sbi.utils.user_input_checks import check_data_device, check_embedding_net_device
+try:
+    import sbibm
+    from pyknos.nflows import distributions as distributions_
+    from pyknos.nflows import flows, transforms
+    from pyknos.nflows.nn import nets
+    from pyknos.nflows.transforms.splines import rational_quadratic
+    from sbi.utils.sbiutils import (
+        standardizing_net,
+        standardizing_transform,
+        z_score_parser,
+    )
+    from sbi.utils.torchutils import create_alternating_binary_mask
+    from sbi.utils.user_input_checks import check_data_device, check_embedding_net_device
+    _SBI_IMPORT_ERROR = None
+except ImportError as exc:
+    sbibm = None
+    distributions_ = flows = transforms = nets = rational_quadratic = None
+    standardizing_net = standardizing_transform = z_score_parser = None
+    create_alternating_binary_mask = None
+    check_data_device = check_embedding_net_device = None
+    _SBI_IMPORT_ERROR = exc
 
 import os
 import pickle
@@ -156,6 +168,12 @@ def build_nsf(
     Returns:
         Neural network.
     """
+    if _SBI_IMPORT_ERROR is not None:
+        raise ImportError(
+            "build_nsf requires optional SBI dependencies: sbi, sbibm, and pyknos. "
+            "The main Gen-DFL synthetic scripts use src.generators.cnf.ConditionalFlow "
+            "and do not require these packages."
+        ) from _SBI_IMPORT_ERROR
     x_numel = batch_x[0].numel()
     # Infer the output dimensionality of the embedding_net by making a forward pass.
     check_data_device(batch_x, batch_y)

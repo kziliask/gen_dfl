@@ -1,0 +1,6 @@
+task: portfolio
+num_projections: 64
+num_diagnostic_samples: 200
+log_epochs: every_epoch
+seeds: [42, 43, 44]
+

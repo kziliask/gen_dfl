@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 
 from optModel import ExpectedPortfolioModel
 from optDataset import optDataset, portfolio_genData
-from train import ConditionalFlow
+from src.generators.cnf import ConditionalFlow
 from diffusion import ConditionalDiffusionModel
 from func.contrastive import contrastiveMAP
 

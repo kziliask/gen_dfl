@@ -7,7 +7,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 from pyepo import EPO
-from train import ConditionalFlow
+from src.generators.cnf import ConditionalFlow
 import json
 import os
 from sklearn.model_selection import train_test_split
@@ -22,9 +22,6 @@ from func.contrastive import NCE, contrastiveMAP
 
 # include argparse
 import argparse
-
-import sbibm
-
 
 def generate_data(m, n, p, deg, dim, noise_width, caps, rank=None):
     # weights, x, c = pyepo.data.portfolio.genData(num_data=n, num_features=p, num_assets=m,
@@ -388,7 +385,7 @@ def main():
     parser.add_argument("--num_experiments", type=int, default=5)
     parser.add_argument("--rank", type=int, default=None)
     parser.add_argument("--deg", nargs="+", type=int, default=[6])
-    parser.add_argument("--risk", type=bool, default=False)
+    parser.add_argument("--risk", action="store_true")
     args = parser.parse_args()
     # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     device = "cpu"
