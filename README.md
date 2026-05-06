@@ -1,14 +1,10 @@
 # gen_dfl
 
-This repository contains the official implementation of:
+This repository contains a clone of the official implementation of `{wang2026gendfl}`, which is the codebase for the paper:
 
 **Gen-DFL: Decision-Focused Generative Learning for Robust Decision Making** (ICLR 2026)
 
-Paper: [OpenReview](https://openreview.net/forum?id=GU2197a3Lm) | [arXiv](https://arxiv.org/abs/2502.05468)
-
 ## Citation
-
-If you find this code helpful, please cite it as `{wang2026gendfl}`:
 
 ~~~bibtex
 @inproceedings{wang2026gendfl,
